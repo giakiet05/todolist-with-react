@@ -130,6 +130,7 @@ function App() {
 					onDeleteAll={handleDeleteAll}
 					onCheckAll={handleCheckAll}
 					setFilter={setFilter}
+					filter={filter}
 				></ControlButtons>
 			</div>
 		</div>

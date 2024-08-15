@@ -1,15 +1,29 @@
-export default function ControlButtons({ onDeleteAll, onCheckAll, setFilter }) {
+export default function ControlButtons({
+	onDeleteAll,
+	onCheckAll,
+	filter,
+	setFilter
+}) {
+	const setButtonType = (filterType) =>
+		filter === filterType ? 'btn-info' : 'btn-warning';
+
 	return (
 		<div className="d-flex justify-content-between">
-			<div className="d-flex gap-1 ">
-				<button className="btn btn-dark" onClick={() => setFilter('all')}>
+			<div className="d-flex gap-1">
+				<button
+					className={`btn ${setButtonType('all')}`}
+					onClick={() => setFilter('all')}
+				>
 					All
 				</button>
-				<button className="btn btn-info" onClick={() => setFilter('completed')}>
+				<button
+					className={`btn ${setButtonType('completed')}`}
+					onClick={() => setFilter('completed')}
+				>
 					Completed
 				</button>
 				<button
-					className="btn btn-warning"
+					className={`btn ${setButtonType('incompleted')}`}
 					onClick={() => setFilter('incompleted')}
 				>
 					Incompleted
