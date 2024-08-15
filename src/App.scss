@@ -1,0 +1,30 @@
+.app {
+	width: 600px;
+	max-height: 90vh;
+}
+
+.task-list {
+	max-height: 40vh;
+
+	.task-item {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&.checked {
+			text-decoration: line-through;
+		}
+
+		.task-content {
+			flex: 1;
+			display: flex;
+			gap: 12px;
+		}
+
+		.task-control {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
