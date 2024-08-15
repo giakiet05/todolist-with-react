@@ -47,7 +47,7 @@ function App() {
 
 		setCount((prev) => {
 			const newCount = prev + 1;
-			localStorage.setItem(COUNTER_STORAGE, newCount); // Update counter in localStorage
+			save(COUNTER_STORAGE, newCount); // Update counter in localStorage
 			return newCount;
 		});
 		inputRef.current.focus();
@@ -91,6 +91,8 @@ function App() {
 
 	function handleDeleteAll() {
 		save(STORAGE, []);
+		save(COUNTER_STORAGE, 1);
+		setCount(1);
 		setTasks([]);
 	}
 
