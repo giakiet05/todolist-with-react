@@ -62,7 +62,9 @@ function App() {
 	}
 
 	function handleDeleteTask(index) {
-		const newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
+		let newTasks;
+		if (tasks.length === 1) newTasks = [];
+		else newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
 		save(STORAGE, newTasks);
 		setTasks(newTasks);
 	}
