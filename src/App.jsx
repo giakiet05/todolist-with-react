@@ -61,18 +61,21 @@ function App() {
 		setTasks(newTasks);
 	}
 
-	function handleDeleteTask(index) {
+	function handleDeleteTask(taskId) {
 		let newTasks;
-		if (tasks.length === 1) newTasks = [];
-		else newTasks = [...tasks.slice(0, index), ...tasks.slice(index + 1)];
+		if (tasks.length === 1) {
+			newTasks = [];
+			setCount(1);
+			save(COUNTER_STORAGE, 1);
+		} else newTasks = tasks.filter((task) => task.id !== taskId);
 		save(STORAGE, newTasks);
 		setTasks(newTasks);
 	}
 
-	function handleEditTask(index) {
-		const updatingText = tasks[index].text;
-		handleDeleteTask(index);
-		setText(updatingText);
+	function handleEditTask(taskId) {
+		const updatingTask = tasks.find((task) => task.id === taskId);
+		handleDeleteTask(taskId);
+		setText(updatingTask.text);
 		inputRef.current.focus();
 	}
 
