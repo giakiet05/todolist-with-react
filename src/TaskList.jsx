@@ -1,19 +1,19 @@
 import './App.scss';
 import TaskItem from './TaskItem';
 export default function TaskList({
-	tasks,
-	onDeleteTask,
-	onEditTask,
-	onToggleChecked
+	tasks
+	// onDeleteTask,
+	// onEditTask,
+	// onToggleChecked
 }) {
 	const list = tasks.map((task) => {
 		return (
 			<TaskItem
 				key={task.id}
 				task={task}
-				onToggleChecked={onToggleChecked}
-				onDeleteTask={onDeleteTask}
-				onEditTask={onEditTask}
+				// onToggleChecked={onToggleChecked}
+				// onDeleteTask={onDeleteTask}
+				// onEditTask={onEditTask}
 			/>
 		);
 	});

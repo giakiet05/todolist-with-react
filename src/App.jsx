@@ -3,7 +3,11 @@ import Header from './Header';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
 import ControlButtons from './ControlButtons';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, createContext } from 'react';
+
+const TaskContext = createContext(); //  context to direcly passing props to TaskItem without going throung TaskList
+//This is just an example of using createContext, however, in this case, it is not necessary
+//createContext should be used when you have to pass the same props through multiple levels of components, or to create a global state
 function App() {
 	const STORAGE = 'todolist-react';
 	const COUNTER_STORAGE = 'task-counter';
@@ -16,7 +20,6 @@ function App() {
 		() => parseInt(localStorage.getItem(COUNTER_STORAGE)) || 1
 	); //counter to set id for each task created
 	const inputRef = useRef();
-
 	useEffect(() => {
 		// Add classes to body when component mounts
 		document.body.classList.add(
@@ -113,33 +116,38 @@ function App() {
 	}
 
 	return (
-		<div className="app bg-light rounded m-3">
-			<Header
-				tasks={tasks}
-				completedTasks={tasks.filter((task) => task.checked)}
-			/>
-			<div className="container-lg mb-3 pb-3">
-				<TaskForm
-					onAddTask={handleAddTask}
-					inputRef={inputRef}
-					text={text}
-					setText={setText}
-				></TaskForm>
-				<TaskList
-					tasks={filterTasks(tasks, filter)}
-					onDeleteTask={handleDeleteTask}
-					onEditTask={handleEditTask}
-					onToggleChecked={handleToggleChecked}
-				></TaskList>
-				<ControlButtons
-					onDeleteAll={handleDeleteAll}
-					onCheckAll={handleCheckAll}
-					setFilter={setFilter}
-					filter={filter}
-				></ControlButtons>
+		<TaskContext.Provider
+			value={{ handleDeleteTask, handleEditTask, handleToggleChecked }}
+		>
+			<div className="app bg-light rounded m-3">
+				<Header
+					tasks={tasks}
+					completedTasks={tasks.filter((task) => task.checked)}
+				/>
+				<div className="container-lg mb-3 pb-3">
+					<TaskForm
+						onAddTask={handleAddTask}
+						inputRef={inputRef}
+						text={text}
+						setText={setText}
+					></TaskForm>
+					<TaskList
+						tasks={filterTasks(tasks, filter)}
+						onDeleteTask={handleDeleteTask}
+						onEditTask={handleEditTask}
+						onToggleChecked={handleToggleChecked}
+					></TaskList>
+					<ControlButtons
+						onDeleteAll={handleDeleteAll}
+						onCheckAll={handleCheckAll}
+						setFilter={setFilter}
+						filter={filter}
+					></ControlButtons>
+				</div>
 			</div>
-		</div>
+		</TaskContext.Provider>
 	);
 }
 
 export default App;
+export { TaskContext };
