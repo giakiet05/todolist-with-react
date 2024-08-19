@@ -9,5 +9,5 @@ export default defineConfig({
 			usePolling: true
 		}
 	},
-	base: '/todolist-with-react/'
+	base: '/'
 });
