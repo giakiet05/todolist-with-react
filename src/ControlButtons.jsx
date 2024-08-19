@@ -40,7 +40,7 @@ export default function ControlButtons({
 						data-bs-toggle="dropdown"
 						aria-expanded="false"
 					>
-						Filter
+						{filter.charAt(0).toUpperCase() + filter.slice(1)}
 					</button>
 					<ul className="dropdown-menu">
 						<li>
@@ -72,7 +72,7 @@ export default function ControlButtons({
 						</li>
 					</ul>
 				</div>
-				<span>View: {filter}</span>
+				{/* <span>View: {filter}</span> */}
 			</div>
 
 			{/* Control buttons */}
