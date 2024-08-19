@@ -1,11 +1,11 @@
 .app {
-	width: 600px;
-	max-height: 90vh;
+	width: 90vw;
+	max-width: 700px;
 }
 
 .task-list {
-	max-height: 40vh;
-
+	height: 50vh;
+	border: solid 1px #ddd;
 	.task-item {
 		position: relative;
 		display: flex;

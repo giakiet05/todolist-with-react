@@ -18,7 +18,7 @@ function Header({ tasks, completedTasks }) {
 				className="progress-count rounded-circle bg-info d-flex align-items-center justify-content-center"
 				style={{ width: 70, height: 70 }}
 			>
-				<h1 className="text-dark">
+				<h1 className="text-dark" style={{ fontSize: 25 }}>
 					{completedTasks.length}/{tasks.length}
 				</h1>
 			</div>

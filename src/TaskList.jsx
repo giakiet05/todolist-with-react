@@ -19,7 +19,7 @@ export default function TaskList({
 	});
 
 	return (
-		<ul className="list-group list-group-flush task-list my-4 overflow-y-auto">
+		<ul className="list-group list-group-flush task-list my-3 overflow-y-auto">
 			{list}
 		</ul>
 	);
